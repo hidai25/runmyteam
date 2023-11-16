@@ -1,0 +1,25 @@
+{% extends "coach/base.html" %} {% block title %} Stripe {% endblock %} {% block body %} {% load staticfiles %}
+
+<link rel='stylesheet' type="text/css" href="{% static 'coach/styles.css' %}" />
+<style>
+  body {
+    background-image: url("http://www.devittspub.ie/wp-content/uploads/2017/04/dark-wood-background.jpg");
+  }
+</style>
+<h1 id="checkout_title">{% for name in team_name %}
+{{ name.team_name }} Premium Checkout
+</h1>
+
+<div id="thank_you">
+  <h3> Thank you for your interest in our premium service!
+      Our fee is very competitive. Pleas click to pay and login to our premium services site!</h3>
+  <h3 style="text-align:left;margin-left:12.5%"> Premium membership fee: {{ name.premium_price }}$. </h3>
+</div>
+
+<form action="{% url 'checkout_page' %}" method="post" class="login">
+  {% csrf_token %}
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ 	stripe_key }}" data-amount="2000" data-name="runmyteam" data-description="premium membership" data-currency="usd">
+  </script>
+</form>
+
+{% endfor %} {% endblock %}

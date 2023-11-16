@@ -1,0 +1,29 @@
+h1, p, .Training_Plan {
+  font-weight: 600;
+  font-size: 24px;
+  text-align: left;
+  list-style: none;
+  margin-left: 10px;
+  color: white
+}
+
+#sched_container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 35px;
+  overflow: hidden;
+}
+
+#sched_container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 800px) {
+  #sched_container {
+    padding-bottom: 100%;
+  }
+}

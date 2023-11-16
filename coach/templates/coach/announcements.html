@@ -1,0 +1,17 @@
+{% load pinax_announcements_tags %} {% block title %} {% endblock %} {% block body %} {% load staticfiles %}
+
+<link rel='stylesheet' type="text/css" href="{% static 'coach/styles4.css' %}" />
+<style>
+  body {
+    background-image: url("http://www.devittspub.ie/wp-content/uploads/2017/04/dark-wood-background.jpg")
+  }
+</style>
+<div>
+  <h3>Announcements</h3> {% announcements as announcement_list %} {% for announcement in announcement_list %}
+  <ul>
+    <li>Subject: {{ announcement.title }}
+      <hr> {{ announcement.content }}</li>
+    <li>Published at {{announcement.publish_start}}</li>
+  </ul>
+</div>
+{% endfor %} {% endblock %}

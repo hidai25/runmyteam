@@ -1,0 +1,35 @@
+{% extends "coach/base.html" %} {% block title %} Training Plan {% endblock %} {% block body %} {% load staticfiles %}
+<link rel='stylesheet' type="text/css" href="{% static 'coach/styles3.css' %}" />
+<style>
+  body {
+    background-image: url("http://www.tokkoro.com/picsup/3109959-abstract_asphalt_black_dark_empty_grass_green_ground_guidance_hd-wallpaper_lane_low-angle-shot_pattern_pavement_race-track_racetrack_road_roadway_running-track_sports_straight_street_track.jpg");
+
+  }
+</style>
+<br>
+<br>
+<h1 style="text-align:center;"> Team Training Plan<h1>
+  <br>
+  <br>
+
+   {% for name in team_plan %}
+
+
+   <p> Your main objective: {{ name.objective }}   </p>
+   <p> Plan for the week that starts at: {{ name.week_start_date }}   <p>
+
+
+<ul class="Training_Plan">
+  <li >Monday's Practice:{{ name.monday_practice }}</li>
+  <li>Tuesday's Practice:{{ name.tuesday_practice }}</li>
+  <li>wednesday's Practice:{{ name.wednesday_practice }}</li>
+  <li>Thursday's Practice:{{ name.thursday_practice }}</li>
+  <li>Friday's Practice:{{ name.friday_practice }}</li>
+  <li>Saturday's Practice:{{ name.saturday_practice }}</li>
+  <li>Sunday's Practice:{{ name.sunday_practice }}</li>
+
+</ul>
+{% endfor %}
+
+<button style="margin-left:auto;margin-right:auto;display:block;margin-top:0%" type="button"><a  id="button_specal" href="{% url 'index' %}">Back to Homepage</a></button>
+  {% endblock %}

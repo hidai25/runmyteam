@@ -1,0 +1,25 @@
+ul {
+  list-style-type: none;
+  color: white;
+  color: white;
+  width: 85%;
+  border: 2px solid white;
+  border-width: 70% padding: 25px;
+  margin-left: 6%;
+  max-width: 85%;
+  position: relative;
+}
+
+ul li {
+  list-style-type: none;
+  color: white;
+  margin: 30px;
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 28px;
+  text-align: center;
+  margin-top: 30px;
+  color: white;
+}

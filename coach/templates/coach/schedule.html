@@ -1,0 +1,10 @@
+{% extends "coach/base.html" %} {% block title %} Schedule {% endblock %} {% block body %} {% load staticfiles %}
+<link rel='stylesheet' type="text/css" href="{% static 'coach/styles3.css' %}" />
+
+
+<div id="sched_container">
+  <iframe src="https://calendar.google.com/calendar/embed?mode=WEEK&amp;height=800&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=3hgnkh8kbqpik1vr1dn5ind2k4%40group.calendar.google.com&amp;color=%235229A3&amp;ctz=America%2FNew_York" style="border-width:0" width="800"
+    height="800" frameborder="0" scrolling="no"></iframe>
+</div>
+
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends "coach/base.html" %}
+<html>
+{% block title %} Home Page {% endblock %} {% block body %} {% load staticfiles %}
+
+<link rel='stylesheet' type="text/css" href="{% static 'coach/styles2.css' %}" />
+
+<head>
+  <title>Run my Team</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+</head>
+
+<body class="homepage">
+  <div>
+    {% if user.is_authenticated %}
+    <p id="logininfo">You are currently logged in as: {{ user.username }}. Your Membership Type is {% if user.groups.first == None %} Superuser {% else %} {{ user.groups.first }} {% endif %}</p>
+    {% endif %} {% if not user.is_authenticated %}
+    <a href="{% url 'signup' %}" class="button_special">Sign Up</a> {% endif %} {% if message %}
+    <div style="color:white;">
+      {{ message }} {% endif %} {% if user.is_authenticated %}
+      <a style="color:white" id="button_special" href="{% url 'logout' %}">Logout</a> {% endif %} {% if perms.coach.see_coach_access %}
+      <P style="float:left"><a href="{% url 'coachadmin' %}" class="button_special">Coaches Access</a></p>
+      {% endif %}
+    </div>
+
+    <div class="wrapper style1">
+      <div id="header">
+        <div class="container">
+          <nav id="nav">
+            <ul>
+              {% if user.is_authenticated %}
+              <li class="active"><a href="{% url 'index' %}">Home</a></li>
+              <li><a href="{% url 'userTeamTplan' %}">Team Training Plan</a></li>
+              {% if perms.coach.see_private_plan %}
+              <li><a href="{% url 'userPrivateTplan' %}">Private Training Plan</a></li>
+              {% endif %}
+              <li><a href="{% url 'announcements' %}">Announcements</a></li>
+              <li><a href="{% url 'schedule' %}">Schedule</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div><a href="{% url 'payment_form' %}"></a></div>
+      {% for details in team_details %}
+      <section id="banner">
+        <div class="inner">
+          <h2>{{ details.team_name }}</h2>
+          <ul class="actions">
+            {% if not user.is_authenticated %}
+            <li><a href="{% url 'login' %}" class="button">Regular</a></li>
+            <li><a href="{% url 'login' %}" class="button">Premium</a></li>
+            <li><a href="{% url 'login' %}" class="button">Coach</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </section>
+
+      <div class="wrapper style2">
+        <section class="container">
+          <div class="row double">
+            <div class="6u">
+              <header class="major">
+                <h2>About Us</h2>
+                <span class="byline">{{ details.about_the_team }}</span>
+                <span class="byline"> Our team has currently {{ details.athlete_number }} Athletes </span>
+              </header>
+            </div>
+            {% endfor %}
+        </section>
+        </div>
+
+        <div id="rows">
+          <h2 style="color:white;margin-bottom:30px;margin-top:30px">Our Team's Staff Members</h2> {% for coach in coach_image %}
+          <section id="team" style="width:25%;float:left ">
+            {% if coach.coach_image %}
+            <a href="#"><img src="{{ coach.coach_image.url }}"  width="180" height="180"></a> {% endif %}
+            <h3>{{ coach.coach_name }}</h3>
+          </section>
+        </div>
+      </div>
+      {% endfor %}
+
+      <br>
+      <br>
+      <div id="footer" style="margin-top:80px">
+        <section class="container">
+          <header id="major">
+            <br>
+            <h2>Connect with us</h2> {% for details in team_details %} {{ details.email_field }} {% endfor %}
+          </header>
+          <hr />
+        </section>
+        <b>© 2018 ALL RIGHTS RESERVED BY HIDAI BAR-MOR</b>
+</body>
+</div>
+<br>
+
+</html>
+
+{% endblock %}
